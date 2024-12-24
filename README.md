@@ -1,22 +1,22 @@
 # MyProject
 
-## Mô tả
+## Describe
 
-MyProject là một ứng dụng Go được thiết kế để:
-- Kiểm tra kho xem có đáp ứng đơn hàng không, xuất lỗi và gửi mail nếu không đủ hàng
-- Áp dụng để tính toán khuyến mãi
-- Gửi email thông báo cho khách hàng là đơn thành công
-- Cập nhật trạng thái đơn hàng trong database
+MyProject is a Go application designed to:
+- Check inventory for order fulfillment, generate errors and send emails if out of stock
+- Apply for promotion calculation
+- Send email notification to customer when order is successful
+- Update order status in database
 
 ---
 
-## Cài đặt
+## Install
 
-### Yêu cầu
+### Required
 
-- **Go**: Phiên bản 1.18 hoặc cao hơn.
-- **MySQL**: Để lưu trữ dữ liệu sản phẩm và đơn hàng.
-- **Gomail**: Thư viện Go để gửi email qua SMTP.
+- **Go**: Version 1.18 or higher.
+- **MySQL**: To store product and order data.
+- **Gomail**: Go library for sending emails via SMTP.
 
 ---
 
@@ -29,14 +29,12 @@ MyProject là một ứng dụng Go được thiết kế để:
 
 2. Create table
 	```bash
-	-- Tạo bảng products
 	CREATE TABLE products (
 		id INT AUTO_INCREMENT PRIMARY KEY,
 		product_name VARCHAR(255) NOT NULL,
 		quantity INT NOT NULL
 	);
 
-	-- Tạo bảng customers
 	CREATE TABLE customers (
 		id INT AUTO_INCREMENT PRIMARY KEY,
 		name VARCHAR(255) NOT NULL,
@@ -44,7 +42,6 @@ MyProject là một ứng dụng Go được thiết kế để:
 		address TEXT NOT NULL
 	);
 
-	-- Tạo bảng orders
 	CREATE TABLE orders (
 		id INT AUTO_INCREMENT PRIMARY KEY,
 		customer_id INT,
@@ -62,21 +59,18 @@ MyProject là một ứng dụng Go được thiết kế để:
 
 3. Insert data
 	```bash
-	-- Insert dữ liệu vào bảng products
 	INSERT INTO products (product_name, quantity)
 	VALUES 
 		('Laptop', 50),
 		('Smartphone', 100),
 		('Tablet', 30);
 
-	-- Insert dữ liệu vào bảng customers
 	INSERT INTO customers (name, email, address)
 	VALUES 
 		('John Doe', 'john@example.com', '123 Main St, City, Country'),
 		('Jane Smith', 'jane@example.com', '456 Oak St, City, Country'),
 		('Alice Brown', 'alice@example.com', '789 Pine St, City, Country');
 
-	-- Insert dữ liệu vào bảng orders
 	INSERT INTO orders (customer_id, quantity, product_id, total_amount, discount, tax, status)
 	VALUES 
 		(1, 2, 1, 2000.00, 100.00, 150.00, 1),  -- Đơn hàng của John Doe, 2 laptop
